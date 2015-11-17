@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+  <script>
+
+function tabPrototype(proto){
+    this.proto = proto;
+    
+    this.clone = function(){                
+        var tab = new Tab();
+        
+        tab.running = proto.running;
+        tab.index = proto.index;
+        tab.tabLoaded = proto.tabLoaded;
+
+        return tab; 
+    };
+}
+
+function Tab(index){
+
+    this.running = false;
+    this.index = index;
+    this.tabLoaded = false;
+
+    this.toggleDisplay = function(index, show){
+
+    	//If we want to show the data
+        if(show === true || this.tabLoaded === true){
+            if(this.running === false){
+            	$(".loading-" + this.index).show();
+    			$(".wrapper-" + this.index).toggle();	
+            }
+        }
+
+        //If we want to hide the data
+        else{
+        	if(this.gifShown === true){
+            	$(".loading-" + this.index).hide();
+    			$(".wrapper-" + this.index).toggle();	
+            }                    
+        }                           
+    }    
+}
+
+//Cloning
+var tabClones = new Array();    
+for(i=0; i<=3; i++){
+   var proto = new Tab(i);
+   var prototype = new tabPrototype(proto);
+   var tab = prototype.clone();
+	   tabClones.push({"ID":i, "Tab":tab});     	    
+}
+console.log(tabClones);
+
+</script>
+</head>
+</html>
