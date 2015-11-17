@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+<div id="foo">
+	I'm the div1
+	<button id="bar">I'm a button1</button>
+</div>
+<div id="foo2">
+	I'm the div2
+	<button id="bar2">I'm a button2</button>
+</div>
+<script type="text/javascript">
+$("#foo").click(function() {
+   alert("The div1 was clicked.");
+});
+
+$("#bar").click(function(ev) {
+   // mouse click on button
+   ev.stopPropagation();
+   alert("The button1 was clicked.");
+});
+$("#foo2").click(function() {
+   alert("The div2 was clicked.");
+});
+
+$("#bar2").click(function(ev) {
+   // mouse click on button
+   alert("The button2 was clicked.");
+});
+
+</script>
+</body>
+</html>
