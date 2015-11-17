@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<style>
+		
+		</style>
+		
+		<script>
+		//based off of http://stackoverflow.com/questions/111102/how-do-javascript-closures-work
+		function makeKitchen () {
+		  var trashBags = ['Bottom Bag', 'Middle Bag', 'Top Bag']; // only 3 at first
+			return {
+				getTrashBag: function() {					
+				  trashBags.pop();
+				  if(trashBags.length > 0){
+					return alert(trashBags);
+				  }
+				  else{
+					return alert('No more trash!');
+				  }
+				}
+			};
+		}
+
+		var kitchen = makeKitchen();
+
+		</script>
+
+	</head>
+
+	<body>
+	
+	<button id="cleanHouse">Clean the house!</button>
+	
+	<script>
+	$("#cleanHouse").click(function() {
+		kitchen.getTrashBag();		
+	});
+	</script>
+	</body>
+
+</html>
+
