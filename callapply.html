@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	
+		<style>
+		
+		</style>
+		
+		<script>
+			//call
+			var o = { x: 15 };
+			var x = 0; 
+			 
+			var callIt = (function()
+				{
+				console.log(this.x);
+				}
+			)
+			 
+			callIt();//returns undefined
+			callIt.call(o);//returns 15
+			
+			var callIt2 = (function()
+				{
+				x = 11;//global variable set?
+					console.log(this.x);
+				}
+			)
+			 
+			callIt2();//returns 10
+			callIt2.call(o);//returns 15
+			
+			
+			var callIt3 = function()
+				{
+					console.log(this.x);
+				}
+			
+			 
+			callIt3();//returns 10
+			callIt3.call(o);//returns 15
+			
+			//apply
+			/*
+			function f(message1, message2)
+			{
+				alert(message1 + (this.x * this.x) + message2);
+			}
+			 
+			function g(object, func)
+			{           
+				// arguments[0] == object
+				// arguments[1] == func
+				 
+				 
+				var args = []; // empty array
+				// copy all other arguments we want to "pass through" 
+				for(var i = 2; i < arguments.length; i++)
+				{
+					args.push(arguments[i]);
+				}
+			 
+				func.apply(object, args);
+			}
+			 
+			g(o, f, "The value of x squared = ", ". Wow!");
+			*/
+			
+			
+			
+		</script>
+
+	</head>
+
+	<body>
+
+	</body>
+
+</html>
