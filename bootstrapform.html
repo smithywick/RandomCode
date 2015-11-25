@@ -3,27 +3,14 @@
 
 	<head>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<style>
-		
+				
 		header{
 			text-align: center;
 		}
-		
-		nav{
-			float: left;
-			width: 5%;
-		}
-		
-		.nav-container{
-			width: 100%;
-			height: 10%;
-		}
-		
-		.nav-link{
-			border-bottom: 2px solid grey;
-		}
-		
+				
 		aside{
 			float: right;
 			width: 20%;
@@ -32,7 +19,7 @@
 		
 		article{
 			float: left;
-			width: 70%;
+			width: 80%;
 			padding: 1%;
 		}
 		
@@ -61,6 +48,19 @@
 		a:active{
 			text-decoration: none;
 		}
+		
+		.save-button{
+			padding-top: 1%;
+		}
+		
+		@media (max-width: 767px) {
+			.hide-767 {
+				display:none !important;
+			}
+			article{
+				width: 98%;
+			}
+		}
 				
 		</style>
 		
@@ -71,23 +71,34 @@
 	</head>
 
 	<body>
-	
+		<div class="nav-container">
+			<nav role="navigation" class="navbar navbar-default">
+				<div class="navbar-header">
+					<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div id="navbarCollapse" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Projects</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		
 		<header>
 			<h1>Example bootstrap form</h1>
 		</header>
 		
-		<!--
-		<nav role="navigation">
-			<div class="nav-container">
-				<div class="nav-link"><a href="#">Home</a></div>
-				<div class="nav-link"><a href="#">Links</a></div>
-				<div class="nav-link"><a href="#">Pictures</a></div>
-				<div class="nav-link"><a href="#">About</a></div>
-				<div class="nav-link"><a href="#">Contact</a></div>
-			</div>
-		</nav>
-		-->
-		<aside>
+		
+
+		<aside class="hide-767">
 			<h2>Header Font for aside</h2>
 			<h3>Smaller font body that goes on and on about nothing</h3>		
 		</aside>
@@ -102,24 +113,24 @@
 					<form class="form-horizontal">
 						<div class="form-group">
 							<div class="col-sm-6 col-md-5 col-lg-5">
-								<label for="tb1a">First Name</label>
-								<input class="form-control" id="tb1a" type="text" required>
+								<label for="fName">First Name</label>
+								<input class="form-control" id="fName" type="text" required>
 							</div>	
 							<div class="col-sm-6 col-md-5 col-lg-5">
-								<label for="tb1b">Last Name</label>
-								<input class="form-control" id="tb1b" type="text" required>
+								<label for="lName">Last Name</label>
+								<input class="form-control" id="lName" type="text" required>
 							</div>
 							<div class="clearfix visible-sm-block"></div>
 							<div class="col-sm-6 col-md-5 col-lg-5">
-								<label for="tb2a">Phone</label>
-								<input class="form-control" id="tb2a" type="phone" required pattern="\d\d\d-\d\d\d-\d\d\d\d" placeholder="555-555-5555">
+								<label for="phone">Phone</label>
+								<input class="form-control" id="phone" type="phone" required pattern="\d\d\d-\d\d\d-\d\d\d\d" placeholder="555-555-5555">
 							</div>
 							<div class="col-sm-6 col-md-5 col-lg-5">
-								<label for="tb2b">Email</label>
-								<input class="form-control" id="tb2b" type="email" required placeholder="username@email.com">
+								<label for="email">Email</label>
+								<input class="form-control" id="email" type="email" required placeholder="username@email.com">
 							</div>
 							<div class="clearfix visible-sm-block"></div>
-							<div class="col-sm-6 col-md-5 col-lg-5">
+							<div class="col-sm-6 col-md-5 col-lg-5 save-button">
 								<input type="submit" value="Save" />
 							</div>						
 						</div>
