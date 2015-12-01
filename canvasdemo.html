@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+
+	<script>
+		"use strict";				
+				
+		var initialClick = true;
+		var gridArr = twoDArr(19);	
+		
+		function twoDArr(size){
+			var thisArr = [];
+			for(var i = 0; i<size; i++){
+				thisArr[i] = [];				
+				for(var j = 0; j<size; j++){
+					thisArr[i][j] = 0;
+				}
+			}
+			return thisArr;			
+		}	
+		
+		function paintCanvas(){
+			
+			var canvas = document.getElementById("canvasElement");
+			var ctx = canvas.getContext("2d");
+			var i = 0, ii=0, j = 0, jj=0;
+			var rando = 0;
+			while(i<490){
+				while(j<490){
+					rando = Math.random();
+					console.log(i + " " + j + " " + ii + " " + jj);
+					gridArr[ii][jj] = Math.floor((rando * 2));
+					ctx.fillStyle = "#FF0000";	
+					ctx.fillRect(i,j,25,25);
+						j+=26;
+						jj++;
+				}
+				j=0;
+				i+=26;
+				ii++;
+				jj=0;				
+			}
+			initialClick = false;
+		}
+		
+		function paint(xCord, yCord){ 
+				
+				var xSqr = Math.floor(xCord/26)*26;
+				var ySqr = Math.floor(yCord/26)*26;
+				var canvas = document.getElementById("canvasElement");
+				var ctx = canvas.getContext("2d");
+				if(gridArr[Math.floor(xCord/26)][Math.floor(yCord/26)]===0){
+					ctx.fillStyle = "blue";
+				}				
+				else{
+					ctx.fillStyle = "black";
+				}
+				ctx.fillRect(xSqr,ySqr,25,25);
+				console.log("xCord mod: " + xCord%26 + " yCord mod: " + yCord%26);
+				console.log("xFloor: " + xSqr + " yFloor: " + ySqr);
+		}
+		
+		function getPosition(event) {
+			if(initialClick){
+				paintCanvas();
+			}
+			var x,y,mouseX,mouseY;
+			if (event.x != undefined && event.y != undefined) {
+				x = event.x;
+				y = event.y;
+			} else {
+				x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+				y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+			}
+			x -= canvasElement.offsetLeft;
+			y -= canvasElement.offsetTop;
+			x = x - window.pageXOffset;
+			y = y - window.pageYOffset;
+			mouseX = x;
+			mouseY = y;
+			paint(mouseX, mouseY);
+			console.log("X: " + mouseX + " Y: " + mouseY);
+		}
+
+	</script>
+
+	<body>
+		<canvas 
+			id="canvasElement" 
+			width="490" 
+			height="490"
+			style="border:1px solid #c3c3c3;"
+			onclick='getPosition(event);'
+		>
+		Your browser does not support the canvas element.
+		</canvas>
+	</body>
+</html>
