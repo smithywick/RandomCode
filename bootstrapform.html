@@ -14,14 +14,16 @@
 				
 		aside{
 			float: right;
-			width: 20%;
-			padding: 1%;
+			width: 40%;
+			padding-right: 1%;
+			font-size: 1.05em;
 		}
 		
 		article{
 			float: left;
-			width: 80%;
-			padding: 1%;
+			width: 55%;
+			padding-left: 5%;
+			font-size: 1.05em;
 		}
 		
 		.tb-container{
@@ -49,20 +51,20 @@
 		a:active{
 			text-decoration: none;
 		}
-		
+				
 		.save-button{
 			padding-top: 1%;
 		}
 		
-		@media (max-width: 767px) {
-			.hide-767 {
+		@media (max-width: 700px) {
+			aside{
 				display:none !important;
 			}
 			article{
-				width: 98%;
+				width:98%;				
 			}
 		}
-				
+						
 		</style>
 		
 		<script>
@@ -95,17 +97,15 @@
 		
 		<header>
 			<h1>Example bootstrap form</h1>
-		</header>
-		
-		
+		</header>				
 
-		<aside class="hide-767">
+		<aside>
 			<h2>Header Font for aside</h2>
-			<h3>Smaller font body that goes on and on about nothing</h3>		
+			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>		
 		</aside>
 		
 		<article>
-			<h2>Header font</h2>
+			<h2>Header 2 font</h2>
 			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 			</p>		
 			
