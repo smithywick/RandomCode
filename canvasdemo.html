@@ -20,7 +20,6 @@
 	<script>
 
 		"use strict";										
-		//http://jsfiddle.net/DV9Bw/1/
 		var gridArr = [];
 		var dim = 0;
 		
@@ -33,7 +32,7 @@
 					thisArr[i][j] = 0;
 				}
 			}
-			console.log(thisArr);
+			//console.log(thisArr);
 			return thisArr;			
 		}	
 		
@@ -53,8 +52,10 @@
 			y = y - window.pageYOffset;
 			mouseX = x;
 			mouseY = y;
-			paint(mouseX, mouseY);
-			console.log("X: " + mouseX + " Y: " + mouseY);
+			if (x !== undefined && y !== undefined&&dim!==undefined) {
+				paint(mouseX, mouseY);
+			}
+			//console.log("X: " + mouseX + " Y: " + mouseY);
 		}
 		
 		function paint(xCord, yCord){ 
@@ -70,8 +71,8 @@
 					ctx.fillStyle = "black";
 				}
 				ctx.fillRect(xSqr,ySqr,dim,dim);
-				console.log("xCord mod: " + xCord%dim + " yCord mod: " + yCord%dim);
-				console.log("xFloor: " + xSqr + " yFloor: " + ySqr);
+				//console.log("xCord mod: " + xCord%dim + " yCord mod: " + yCord%dim);
+				//console.log("xFloor: " + xSqr + " yFloor: " + ySqr);
 				
 		}
 
@@ -100,10 +101,16 @@
 		function paintGrid(){
 			dim = document.getElementById('dim').value;
 			var qty = document.getElementById('qty').value;
-			console.log(dim + " " + qty);
+			//console.log(dim + " " + qty);
 			gridArr = twoDArr(qty);	
 			paintCanvas(dim, qty);
 			
+		}
+				
+		function rgbToHex(r, g, b) {
+			if (r > 255 || g > 255 || b > 255)
+				throw "Invalid color component";
+			return ((r << 16) | (g << 8) | b).toString(16);
 		}
 
 	</script>
@@ -123,7 +130,7 @@
 					width="500" 
 					height="500"
 					style="border:1px solid #c3c3c3;"
-					onclick='getPosition(event);'
+					onmousemove="getPosition(event);"
 				>
 				Your browser does not support the canvas element.
 				</canvas>
