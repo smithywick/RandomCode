@@ -1,11 +1,29 @@
 <!DOCTYPE HTML>
 <html>
 
+	<head>
+	
+	<style>
+		
+		.paint-container div{
+			vertical-align:top;
+		}
+		
+		.input-fields{
+			margin-bottom: 10px;
+		}
+	
+	
+	</style>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script>
-		"use strict";				
-				
-		var initialClick = true;
-		var gridArr = twoDArr(19);	
+
+		"use strict";										
+		
+		var gridArr = [];
+		var dim = 0;
+		
 		
 		function twoDArr(size){
 			var thisArr = [];
@@ -15,59 +33,17 @@
 					thisArr[i][j] = 0;
 				}
 			}
+			console.log(thisArr);
 			return thisArr;			
 		}	
 		
-		function paintCanvas(){
-			
-			var canvas = document.getElementById("canvasElement");
-			var ctx = canvas.getContext("2d");
-			var i = 0, ii=0, j = 0, jj=0;
-			var rando = 0;
-			while(i<490){
-				while(j<490){
-					rando = Math.random();
-					console.log(i + " " + j + " " + ii + " " + jj);
-					gridArr[ii][jj] = Math.floor((rando * 2));
-					ctx.fillStyle = "#FF0000";	
-					ctx.fillRect(i,j,25,25);
-						j+=26;
-						jj++;
-				}
-				j=0;
-				i+=26;
-				ii++;
-				jj=0;				
-			}
-			initialClick = false;
-		}
-		
-		function paint(xCord, yCord){ 
-				
-				var xSqr = Math.floor(xCord/26)*26;
-				var ySqr = Math.floor(yCord/26)*26;
-				var canvas = document.getElementById("canvasElement");
-				var ctx = canvas.getContext("2d");
-				if(gridArr[Math.floor(xCord/26)][Math.floor(yCord/26)]===0){
-					ctx.fillStyle = "blue";
-				}				
-				else{
-					ctx.fillStyle = "black";
-				}
-				ctx.fillRect(xSqr,ySqr,25,25);
-				console.log("xCord mod: " + xCord%26 + " yCord mod: " + yCord%26);
-				console.log("xFloor: " + xSqr + " yFloor: " + ySqr);
-		}
-		
-		function getPosition(event) {
-			if(initialClick){
-				paintCanvas();
-			}
+		function getPosition(event) {			
 			var x,y,mouseX,mouseY;
 			if (event.x != undefined && event.y != undefined) {
 				x = event.x;
 				y = event.y;
-			} else {
+			} 
+			else {
 				x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
 				y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 			}
@@ -80,18 +56,78 @@
 			paint(mouseX, mouseY);
 			console.log("X: " + mouseX + " Y: " + mouseY);
 		}
+		
+		function paint(xCord, yCord){ 
+				
+				var xSqr = Math.floor(xCord/dim)*dim;
+				var ySqr = Math.floor(yCord/dim)*dim;
+				var canvas = document.getElementById("canvasElement");
+				var ctx = canvas.getContext("2d");
+				if(gridArr[Math.floor(xCord/dim)][Math.floor(yCord/dim)]===0){
+					ctx.fillStyle = "blue";
+				}				
+				else{
+					ctx.fillStyle = "black";
+				}
+				ctx.fillRect(xSqr,ySqr,dim,dim);
+				console.log("xCord mod: " + xCord%dim + " yCord mod: " + yCord%dim);
+				console.log("xFloor: " + xSqr + " yFloor: " + ySqr);
+				
+		}
+
+				
+		function paintCanvas(dim, qty){
+			
+			var canvas = document.getElementById("canvasElement");
+			var ctx = canvas.getContext("2d");
+			var i = 0,j = 0;
+			var rando = 0;
+			ctx.fillStyle = "#ffffff";	
+			ctx.fillRect(0,0,500,500);
+			while(i<qty){
+				while(j<qty){
+					rando = Math.random();
+					gridArr[i][j] = Math.floor((rando * 2));
+					ctx.fillStyle = "#FF0000";	
+					ctx.fillRect(i*dim,j*dim,dim,dim);
+						j++;
+				}
+				j=0;
+				i++;		
+			}
+		}
+				
+		function paintGrid(){
+			dim = document.getElementById('dim').value;
+			var qty = document.getElementById('qty').value;
+			console.log(dim + " " + qty);
+			gridArr = twoDArr(qty);	
+			paintCanvas(dim, qty);
+			
+		}
 
 	</script>
 
 	<body>
-		<canvas 
-			id="canvasElement" 
-			width="490" 
-			height="490"
-			style="border:1px solid #c3c3c3;"
-			onclick='getPosition(event);'
-		>
-		Your browser does not support the canvas element.
-		</canvas>
+		<div class="paint-container">
+			<div class="input-fields">
+				<label for="dim">How many pixels wide?</label>
+				<input type="text" id="dim" value="25">
+				<label for="qty">How Many?</label>
+				<input type="text" id="qty" value="15">
+				<input type="button" value="Paint it!" onclick="paintGrid()">
+			</div>
+			<div class="paint-canvas">
+				<canvas 
+					id="canvasElement" 
+					width="500" 
+					height="500"
+					style="border:1px solid #c3c3c3;"
+					onclick='getPosition(event);'
+				>
+				Your browser does not support the canvas element.
+				</canvas>
+			</div>
+		</div>
 	</body>
 </html>
