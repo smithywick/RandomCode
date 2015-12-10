@@ -1,2 +1,2 @@
 # RandomCode
-#These code snippets are just practice. The aim being an hour or so researching a topic and then implementing.
+# Unfinished, unpolished works in progress to be moved into a final folder.
