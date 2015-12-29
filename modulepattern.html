@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	
+		<style>
+		
+		</style>
+		
+		<script>
+		
+		var foo = (function(){
+			
+			var o = {bar: "bar"};
+			
+			return{
+				bar: function(){
+					console.log(o.bar);
+				}
+			};
+		});();
+		
+		foo.bar();
+		
+		</script>
+
+	</head>
+
+	<body>
+
+	</body>
+
+</html>
