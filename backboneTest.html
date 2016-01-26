@@ -1,0 +1,172 @@
+<html>
+<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone.js"></script>    	
+<script>
+/*
+var Vehical = Backbone.Model.extend({
+	initialize: function(){
+		console.log('created a Vehical');
+	}
+});
+
+var car = new Vehical();
+
+var A = Backbone.Model.extend({
+	initialize: function(){
+		console.log('created an A');
+	},
+	asString: function(){
+		return JSON.stringify(this.toJSON());
+	}
+});
+
+var a = new A({
+	one: '1',
+	two: '2'
+});
+
+var B = A.extend({
+	
+});
+
+var b = new B({
+	three: '3'
+});
+
+console.log(a.asString());
+console.log(b.asString());
+
+console.log(a instanceof b);
+*/
+/*
+var Vehical = Backbone.Model.extend({
+	dump: function(){
+		console.log(JSON.stringify(this.toJSON()));
+	},
+	initialize: function(){
+		console.log('created a Vehical');
+	}
+});
+
+var car = new Vehical({ type: 'car' });
+console.log(JSON.stringify(car.toJSON()));
+car.set('color', 'blue');
+console.log(JSON.stringify(car.toJSON()));
+car.set({
+	description: "dfsgsdfgsdfg",
+	weight: 1234
+});
+console.log(JSON.stringify(car.toJSON()));
+
+console.log(car.has('type'))
+console.log(car.has('year'));
+
+
+car.on('change:color', function(){
+	console.log('color was changed.');
+});
+
+
+car.set('color', 'purple');
+
+var volcano = _.extend({},Backbone.Events);
+
+volcano.on('disaster:eruption', function(options){
+	console.log('ahhh! ' + options.plan);
+});
+
+volcano.trigger('disaster:eruption', {plan: 'run'});
+
+console.log(car.cid);
+console.log(car.isNew());
+console.log(car.id);
+volcano.off('disaster:eruption');
+
+volcano.trigger('disaster:eruption', {plan: 'run'});
+
+
+
+*/
+
+//toJSON converts a models attributes to javascript
+
+//save fetch destroy
+//save insert update
+//fetch update model with server side state
+//destroy deletes model from server
+
+//escape to return values from an attribute to the DOM
+//has checks to see if an attribute exists in an object
+//model raise events when their state changes
+//car.on('change', function(){});
+//trigger to trigger an event
+
+//model validation
+//validate or isValid (boo)
+//in backbone model, validate: function (attrs){ var isValAttr = 'green'; if(attrs.color}
+/*
+var Boat = Backbone.Model.extend({
+	validate: function(attrs){
+		var validColors = ['White','Black','Green'];
+		var colorIsValid = function(attrs){
+			if(!attrs.color)	return true;
+			return _(validColors).include(attrs.color);
+		}
+		if(!colorIsValid(attrs)){
+			return "color must be one of: " + validColors.join(" , ");
+		}
+	}
+});
+
+var speedRacer = new Boat();
+
+speedRacer.on('error', function(model, error){
+	console.log(error);
+});
+
+speedRacer.set('foo', 'bar');
+speedRacer.set('color', 'hgghghhj');
+*/
+
+//this part isn't working check it out
+var Vehicle = Backbone.Model.extend({
+	validate: function (attrs) {
+		var validColors = ['white','red','blue','yellow'];
+		var colorIsValid = function (attrs) {
+			if (!attrs.color) return true;
+			return _(validColors).include(attrs.color);
+		};
+		
+		if (!colorIsValid(attrs)) {
+			return "color must be one of: " + validColors.join(',');
+		}
+	}
+});
+
+var car = new Vehicle();
+
+car.on('error', function (model, error) {
+	console.log(error);
+});
+
+car.set('foo','bar');
+car.set('color', 'blue');
+car.set('color', 'zsdfsdfsdf');
+console.log(car.get('color'));
+car.set('color', 'red');
+console.log(car.get('color'));
+
+// error handlers can be overridden per-operation
+
+
+
+</script>
+</head>
+<body>
+<script>//$('body').append(speedRacer.escape('description'));
+	
+</script>
+</body>
+</html>
