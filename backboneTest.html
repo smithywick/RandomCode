@@ -160,6 +160,19 @@ console.log(car.get('color'));
 
 // error handlers can be overridden per-operation
 
+var fooView = new BarView({
+	model: fooModel,
+	className: fooClass,
+	id: fooId
+});
+
+var myModel = new Backbone.model();
+myModel.set('content', 'this is my content');
+
+var myView = new Backbone.view({
+	model: myModel,
+	className: 'model-object'
+})
 
 
 </script>
